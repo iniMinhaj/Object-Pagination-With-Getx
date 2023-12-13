@@ -18,12 +18,11 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
     flashController.loadMoreData();
   }
 
-  // @override
-  // void dispose() {
-  //   flashController.resetState();
-
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    flashController.resetState();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,8 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
               crossAxisSpacing: 16,
               childAspectRatio: .85,
             ),
-            itemCount: flashController.flashList.length + 1,
+            itemCount: flashController.flashList.length +
+                (flashController.hasMoreData == true ? 1 : 0),
             // (flashController.hasMoreData.value == true ? 1 : 0),
             itemBuilder: (context, index) {
               if (index == flashController.flashList.length) {

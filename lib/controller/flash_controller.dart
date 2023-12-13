@@ -16,7 +16,7 @@ class FlashController extends GetxController {
   final flashModel = FlashModel().obs;
 
   final flashList = <Datum>[].obs;
-  int hasMoreData = 5; // false = 5, true = 10
+  bool hasMoreData = false;
 
   Future<void> fetchFlashSale() async {
     const baseUrl = "https://shopperz.foodking.dev";
@@ -38,10 +38,10 @@ class FlashController extends GetxController {
         print("Current Page = $page");
         print("lastPage = $lastPage");
         if (page <= lastPage) {
-          hasMoreData = 10;
+          hasMoreData = true;
           page++;
         } else {
-          hasMoreData = 5;
+          hasMoreData = false;
         }
       }
     } catch (e) {
@@ -72,13 +72,13 @@ class FlashController extends GetxController {
   //   return scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent;
   // }
 
-  // End ScrollNotification.....................
+  // End not
 
   // Reset State
   void resetState() {
     flashList.clear();
     page = 1; // Reset pagination parameters
-    hasMoreData = 10; // Reset the flag for more data availability
+    hasMoreData = false; // Reset the flag for more data availability
   }
 
   @override

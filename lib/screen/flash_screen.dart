@@ -16,6 +16,7 @@ class FlashScreen extends StatelessWidget {
           actions: [
             InkWell(
               onTap: () {
+                flashController.fetchFlashSale();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => const SeeAllScreen()));
               },
